@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -8,11 +9,16 @@ import { environment } from '../../environments/environment';
 })
 export class WeatherService {
   private apiUrl = environment.apiUrl;
-  private apiKey = environment.apiKey;
+  private weatherApiUrl = environment.weatherApiUrl;
+  private weatherApiKey = environment.weatherApiKey;
 
   constructor(private http: HttpClient) { }
 
-  getWeather(city: string, countryCode: string) {
-    return this.http.get(`${this.apiUrl}?q=${city},${countryCode}&APPID=${this.apiKey}`);
+  getWeather(cityId: number): Observable<any> {
+    return this.http.get(`${this.weatherApiUrl}?id=${cityId}&APPID=${this.weatherApiKey}`);
+  }
+
+  searchCity(searchString: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/city/search?q=${searchString}`);
   }
 }
