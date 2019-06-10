@@ -16,7 +16,7 @@ import {debounceTime, startWith, switchMap, catchError, distinctUntilChanged} fr
 })
 export class WeatherComponent implements OnInit {
   weatherData: Object = {};
-  cityInput = new FormControl();
+  cityInput: FormControl = new FormControl();
   filteredCityList: City[];
   filteredCityList$: ISubscription;
 
@@ -53,5 +53,6 @@ export class WeatherComponent implements OnInit {
     this.weatherData['temp'] = celcius;
     this.weatherData['icon'] = data.weather[0].icon;
     this.weatherData['text'] = data.weather[0].main;
+    this.weatherData['city'] = data.name;
   }
 }
