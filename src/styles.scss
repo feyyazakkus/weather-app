@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-.container {
-  width: 800px;
-  margin: 20px auto;
-  text-align: center;
+body {
+  background: #86b9e0;
+  color: #fff;
 }

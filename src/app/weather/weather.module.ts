@@ -6,11 +6,13 @@ import { MaterialModule } from '../material/material.module';
 import { WeatherService } from './weather.service';
 import { WeatherComponent } from './components/weather.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
+import { CelciusPipe } from './pipes/celcius.pipe';
 
 @NgModule({
   declarations: [
     WeatherComponent,
-    WeatherCardComponent
+    WeatherCardComponent,
+    CelciusPipe
   ],
   imports: [
     CommonModule,

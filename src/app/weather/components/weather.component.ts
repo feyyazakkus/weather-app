@@ -4,6 +4,7 @@ import {MatAutocompleteSelectedEvent} from '@angular/material';
 
 import {WeatherService} from '../weather.service';
 import {City} from '../models/city.model';
+import {WeatherData} from '../models/weather.model';
 
 import {of} from 'rxjs/internal/observable/of';
 import {ISubscription} from 'rxjs/Subscription';
@@ -15,7 +16,7 @@ import {debounceTime, startWith, switchMap, catchError, distinctUntilChanged} fr
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
-  weatherData: Object = {};
+  weatherData: WeatherData;
   cityInput: FormControl = new FormControl();
   filteredCityList: City[];
   filteredCityList$: ISubscription;
@@ -49,10 +50,11 @@ export class WeatherComponent implements OnInit {
   }
 
   drawWeather(data:any) {
-    let celcius = Math.round(parseFloat(data.main.temp)-273.15);
-    this.weatherData['temp'] = celcius;
-    this.weatherData['icon'] = data.weather[0].icon;
-    this.weatherData['text'] = data.weather[0].main;
-    this.weatherData['city'] = data.name;
+    this.weatherData = {
+      temp: data.main.temp,
+      icon: data.weather[0].icon,
+      text: data.weather[0].main,
+      city: data.name
+    };
   }
 }
